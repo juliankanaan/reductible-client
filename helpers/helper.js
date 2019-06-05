@@ -1,51 +1,58 @@
 //require('dotenv').config();
 const fetch = require('isomorphic-fetch');
-const EventEmitter = require("events");
-
-const emitter = new EventEmitter();
-
-module.exports = emitter;
-
-// create events
-// we fetched a file body successfully
-emitter.on('fetchedBody', (body) => {
-  console.log("got body: " +body);
-  parseData(body);
-});
-// successfully got a clean row
-
-// successfully got an array of [hospital, procedure, cost]
-emitter.on('gotRecord', (record) => {
-  console.log('got record: ' + record);
-  postToRestApi(record);
-})
+// maybe get thus from the ``
+const restApiPath = 'https://localhost:4000/post/push';
 
 
-export  function callApi(url) {
-    var data = url;
-    emitter.emit('fetchedBody', data);
+async function callAsync(url, schema) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return formatter(data, schema);
+}
+function formatter(data, schema) {
+  // separate into lines
   /*
-  fetch(url).then(data => {
-    //console.log(data);
-    // emit event: successfully fetched file body
-    emitter.emit('fetchedBody', data);
+  var lines = returnLines(data);
 
-    parseData(data);
-    return true;
-  })
-  .catch(err => {
-    console.log(err);
-    //const bigData = null; // empty
-    return false;
-  });
+  for (line of lines) {
+    //
+    getPriceProcedurePairs(line, schema)
+  }
   */
-}
+  return data;
 
-export  function parseData(lines) {
-  var record = lines;
-  // foreach line..
-  emitter.emit('gotRecord', record);
 }
-export  function postToRestApi(arr){
-  console.log('..sending data' + arr);
+function returnLines(data) {
+  // body
+  return data;
 }
+function getPriceProcedurePairs(line, schema) {
+  // loop concurrently over each array. ALSO: try to catch errors (index out of range, just ignore the bad rows )
+
+  // then join the descriptions together
+
+  // then push into json pairs
+  var jsonData = JSON.stringify({
+    hospital: '',
+    procedureName: '',
+    procedureCost: ''
+  });
+  console.log(jsonData);
+  return postToApi(jsonData);
+}
+async function postToApi(data){
+  // push a single data point to DB
+  // NOTE: maybe use bulk insert?
+  const post = await fetch(restApiPath,{
+    method: 'POST',
+    body: JSON.stringify({
+      hospital: data.hospital,
+      procedureName: data.procedureName,
+      procedureCost: data.procedureCost
+    }),
+    headers: {'Content-Type': 'application/json'}
+  });
+  const request = await response.json();
+  console.log(request);
+}
+module.exports.callAsync = callAsync;

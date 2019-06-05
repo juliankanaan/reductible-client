@@ -1,18 +1,13 @@
 import Header from './Header';
+import '../pages/index.css'
 
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD'
-};
-
-const Layout = props => {
-  return () => (
-    <div style={layoutStyle}>
-      <Header />
-      {props.children}
-    </div>
-  );
-};
+const Layout = props => (
+      <div>
+        <Header />
+        <div className='appBody'>
+          {props.children}
+        </div>
+      </div>
+    );
 
 export default Layout;
