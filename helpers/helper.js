@@ -37,7 +37,7 @@ function getPriceProcedurePairs(line, schema) {
     procedureName: '',
     procedureCost: ''
   });
-  console.log(jsonData);
+  //console.log(jsonData);
   return postToApi(jsonData);
 }
 async function postToApi(data){

@@ -31,11 +31,7 @@ export default class UrlForm extends React.Component {
     const res = helper.callAsync(this.state.url, this.state.schema)
                 .then(data => {
                   console.log(data)
-                })
-                .then(data => {
-                  this.setState({
-                    result: data
-                  });
+                  this.setState({ result: JSON.stringify(data) })
                 });
 
   }

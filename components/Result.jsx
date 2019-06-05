@@ -5,7 +5,8 @@ class Result extends React.Component {
 
   render () {
     return (
-        <div>
+        <div className='result'>
+          <p>Sample response:</p>
           {this.props.text}
         </div>
       );
