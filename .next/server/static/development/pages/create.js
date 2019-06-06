@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -377,13 +377,19 @@ function (_React$Component) {
     _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(UrlForm).call(this, props));
     _this.state = {
       url: '',
-      schema: '',
-      result: ''
+      priceColumn: '',
+      result: '',
+      hospital: '',
+      descStart: '',
+      descEnd: ''
     }; // bind "this"
 
     _this.handleUrlChange = _this.handleUrlChange.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
-    _this.handleSchemaChange = _this.handleSchemaChange.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
+    _this.handlepriceColumnChange = _this.handlepriceColumnChange.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
     _this.handleSubmit = _this.handleSubmit.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
+    _this.handleHospitalChange = _this.handleHospitalChange.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
+    _this.handleDescStartChange = _this.handleDescStartChange.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
+    _this.handleDescEndChange = _this.handleDescEndChange.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
     return _this;
   }
 
@@ -395,10 +401,31 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "handleSchemaChange",
-    value: function handleSchemaChange(event) {
+    key: "handlepriceColumnChange",
+    value: function handlepriceColumnChange(event) {
       this.setState({
-        schema: event.target.value
+        priceColumn: event.target.value
+      });
+    }
+  }, {
+    key: "handleHospitalChange",
+    value: function handleHospitalChange(event) {
+      this.setState({
+        hospital: event.target.value
+      });
+    }
+  }, {
+    key: "handleDescStartChange",
+    value: function handleDescStartChange(event) {
+      this.setState({
+        descStart: event.target.value
+      });
+    }
+  }, {
+    key: "handleDescEndChange",
+    value: function handleDescEndChange(event) {
+      this.setState({
+        descEnd: event.target.value
       });
     }
   }, {
@@ -406,37 +433,37 @@ function (_React$Component) {
     value: function handleSubmit(event) {
       var _this2 = this;
 
-      event.preventDefault(); //alert('A name was submitted: ' + this.state.url + " " + this.state.schema);
+      event.preventDefault(); //alert('A name was submitted: ' + this.state.url + " " + this.state.priceColumn);
 
-      var res = _helpers_helper_js__WEBPACK_IMPORTED_MODULE_8___default.a.callAsync(this.state.url, this.state.schema).then(function (data) {
-        console.log(data);
-
+      var res = _helpers_helper_js__WEBPACK_IMPORTED_MODULE_8___default.a.callAsync(this.state.url, this.state.descStart, this.state.descEnd, this.state.priceColumn, this.state.hospital).then(function (data) {
+        //console.log(data)
         _this2.setState({
           result: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(data)
         });
       });
-    }
+    } // submit
+
   }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 55
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 56
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: "form-group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 57
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
@@ -445,28 +472,85 @@ function (_React$Component) {
         name: "url",
         value: this.state.url,
         onChange: this.handleUrlChange,
-        placeholder: "URL goes here",
+        placeholder: "URL",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 58
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: "form-group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 60
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("textarea", {
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
         className: "form-control",
-        name: "scehma",
-        value: this.state.schema,
-        onChange: this.handleSchemaChange,
-        placeholder: "Schema key goes here",
+        type: "text",
+        name: "hospital",
+        value: this.state.hospital,
+        onChange: this.handleHospitalChange,
+        placeholder: "Hospital name",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 61
+        },
+        __self: this
+      })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "form-group",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 63
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
+        className: "form-control",
+        type: "text",
+        name: "descStart",
+        value: this.state.descStart,
+        onChange: this.handleDescStartChange,
+        placeholder: "DescStart",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64
+        },
+        __self: this
+      })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "form-group",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 66
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
+        className: "form-control",
+        type: "text",
+        name: "descEnd",
+        value: this.state.descEnd,
+        onChange: this.handleDescEndChange,
+        placeholder: "DescEnd",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 67
+        },
+        __self: this
+      })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "form-group",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 69
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
+        className: "form-control",
+        name: "priceColumn",
+        value: this.state.priceColumn,
+        onChange: this.handlepriceColumnChange,
+        placeholder: "Price position?",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 70
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
@@ -474,22 +558,22 @@ function (_React$Component) {
         className: "btn btn-primary",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 73
         },
         __self: this
       }, "Submit")), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Preview__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        json: this.state.schema,
+        json: this.state.priceColumn,
         url: this.state.url,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52
+          lineNumber: 75
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Result__WEBPACK_IMPORTED_MODULE_10__["default"], {
         text: this.state.result,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 76
         },
         __self: this
       }));
@@ -515,27 +599,30 @@ function (_React$Component) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
 
+var _stringify = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js"));
+
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js"));
 
-var _stringify = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js"));
+var _parseInt2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js"));
+
+var _getIterator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js"));
 
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js"));
 
 //require('dotenv').config();
-var fetch = __webpack_require__(/*! isomorphic-fetch */ "isomorphic-fetch"); // maybe get thus from the ``
+var fetch = __webpack_require__(/*! isomorphic-fetch */ "isomorphic-fetch");
 
+var restApiPath = 'https://localhost:4000/api/post/bulk';
 
-var restApiPath = 'https://localhost:4000/post/push';
-
-function callAsync(_x, _x2) {
+function callAsync(_x, _x2, _x3, _x4, _x5) {
   return _callAsync.apply(this, arguments);
 }
 
 function _callAsync() {
   _callAsync = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee(url, schema) {
-    var response, data;
+  _regenerator.default.mark(function _callee(url, descStart, descEnd, priceColumn, hospital) {
+    var response, data, formattedData;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -546,13 +633,15 @@ function _callAsync() {
           case 2:
             response = _context.sent;
             _context.next = 5;
-            return response.json();
+            return response.text();
 
           case 5:
             data = _context.sent;
-            return _context.abrupt("return", formatter(data, schema));
+            formattedData = transformer(data, descStart, descEnd, priceColumn, hospital);
+            console.log(formattedData);
+            return _context.abrupt("return", formattedData);
 
-          case 7:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -562,38 +651,110 @@ function _callAsync() {
   return _callAsync.apply(this, arguments);
 }
 
-function formatter(data, schema) {
-  // separate into lines
+function givePreview(data) {
+  var preview = [];
+  console.log(data[0]); // pick out three random elements of JSON array
 
-  /*
-  var lines = returnLines(data);
-   for (line of lines) {
-    //
-    getPriceProcedurePairs(line, schema)
+  var rand1 = Math.random() * data.length;
+  var rand2 = Math.random() * data.length;
+  var rand3 = Math.random() * data.length;
+  preview.push(data[rand1], data[rand2], data[rand3]);
+  return preview;
+}
+
+function transformer(data, descStart, descEnd, priceColumn, hospital) {
+  var readyVals = []; // separate into lines
+
+  var lines = returnLines(data); // JSON populate
+
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = (0, _getIterator2.default)(lines), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var line = _step.value;
+      var jsonReady = groupDataReturnRecord(line, descStart, descEnd, priceColumn);
+      jsonReady['hospital'] = hospital;
+      readyVals.push(jsonReady); //console.log(jsonReady);
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
   }
-  */
-  return data;
+
+  return readyVals;
 }
 
 function returnLines(data) {
-  // body
-  return data;
+  // works: 2:40pm
+  var lines = [];
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = (0, _getIterator2.default)(data.split('\n')), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var line = _step2.value;
+      lines.push(line.replace(/\s+/g, ' ')); // trimmed extra spaces
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+        _iterator2.return();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  lines.pop(); // there's always an empty element created at end, remove it
+
+  return lines;
 }
 
-function getPriceProcedurePairs(line, schema) {
-  // loop concurrently over each array. ALSO: try to catch errors (index out of range, just ignore the bad rows )
-  // then join the descriptions together
-  // then push into json pairs
-  var jsonData = (0, _stringify.default)({
+function groupDataReturnRecord(line, descStart, descEnd, priceColumn) {
+  // create arr
+  var arr = line.split(" ");
+  arr.pop(); // there's always an empty element created at end, remove it
+
+  var record = {
     hospital: '',
     procedureName: '',
     procedureCost: ''
-  }); //console.log(jsonData);
+  };
+  var cost = arr[arr.length + (0, _parseInt2.default)(priceColumn)]; // probably -2 position
+  // convert relative negative pos for descEnd to positive for this array
 
-  return postToApi(jsonData);
+  var positiveEnd = arr.indexOf(arr[arr.length + (0, _parseInt2.default)(descEnd)]); // remap
+
+  var description = arr.map(function (word, pos) {
+    if (pos >= (0, _parseInt2.default)(descStart) && pos <= positiveEnd) {
+      return word;
+    }
+  });
+  record['procedureName'] = description.join(" ").trim();
+  record['procedureCost'] = cost; //console.log(cost);
+
+  return record;
 }
 
-function postToApi(_x3) {
+function postToApi(_x6) {
   return _postToApi.apply(this, arguments);
 }
 
@@ -639,6 +800,17 @@ function _postToApi() {
 }
 
 module.exports.callAsync = callAsync;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/get-iterator */ "core-js/library/fn/get-iterator");
 
 /***/ }),
 
@@ -694,6 +866,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/get-prototype
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/object/set-prototype-of */ "core-js/library/fn/object/set-prototype-of");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/parse-int.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/parse-int */ "core-js/library/fn/parse-int");
 
 /***/ }),
 
@@ -1553,7 +1736,7 @@ function Create() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!********************************!*\
   !*** multi ./pages/create.jsx ***!
   \********************************/
@@ -1562,6 +1745,17 @@ function Create() {
 
 module.exports = __webpack_require__(/*! /Users/juliankanaan/Documents/GitHub/clientReactInterfact/pages/create.jsx */"./pages/create.jsx");
 
+
+/***/ }),
+
+/***/ "core-js/library/fn/get-iterator":
+/*!**************************************************!*\
+  !*** external "core-js/library/fn/get-iterator" ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/get-iterator");
 
 /***/ }),
 
@@ -1617,6 +1811,17 @@ module.exports = require("core-js/library/fn/object/get-prototype-of");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/set-prototype-of");
+
+/***/ }),
+
+/***/ "core-js/library/fn/parse-int":
+/*!***********************************************!*\
+  !*** external "core-js/library/fn/parse-int" ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/parse-int");
 
 /***/ }),
 
