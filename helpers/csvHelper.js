@@ -12,7 +12,7 @@ function readCsv(file){
       //console.log(results);
       //console.log(cleanUp(results));
       //console.log(transformer(results, 0,1));
-      //console.log(JSON.stringify(transformer(results, 0,1)));
+      console.log(JSON.stringify(transformer(results, 0,1)));
       /*
       ex = [
       {"hospital":"","procedureName":"12X40X120 PROTEGE STENT","procedureCost":"1500.00"},
@@ -20,7 +20,7 @@ function readCsv(file){
       {"hospital":"","procedureName":"12X8 AMPLATZER VASCULAR PLUG","procedureCost":"1484.00"}
       ]
       */
-      postToEndpoint(results);
+      //postToEndpoint(results);
     }
   });
 

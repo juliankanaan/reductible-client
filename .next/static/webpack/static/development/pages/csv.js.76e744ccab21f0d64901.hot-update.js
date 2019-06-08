@@ -25,8 +25,7 @@ function readCsv(file) {
   };
   Papa.parse(file, {
     header: false,
-    complete: function complete(results) {
-      //console.log(results);
+    complete: function complete(results) {//console.log(results);
       //console.log(cleanUp(results));
       //console.log(transformer(results, 0,1));
       //console.log(JSON.stringify(transformer(results, 0,1)));
@@ -38,7 +37,7 @@ function readCsv(file) {
       {"hospital":"","procedureName":"12X8 AMPLATZER VASCULAR PLUG","procedureCost":"1484.00"}
       ]
       */
-      postToEndpoint(results);
+      //postToEndpoint(results);
     }
   });
 }
@@ -143,4 +142,4 @@ module.exports.readCsv = readCsv;
 /***/ })
 
 })
-//# sourceMappingURL=csv.js.18cb1c0303522d8b44d3.hot-update.js.map
+//# sourceMappingURL=csv.js.76e744ccab21f0d64901.hot-update.js.map

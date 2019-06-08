@@ -236,6 +236,8 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runti
 
 var _getIterator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js"));
 
+var _stringify = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js"));
+
 var Papa = __webpack_require__(/*! Papaparse */ "./node_modules/Papaparse/papaparse.min.js"); // return jsonData
 
 
@@ -249,8 +251,7 @@ function readCsv(file) {
       //console.log(results);
       //console.log(cleanUp(results));
       //console.log(transformer(results, 0,1));
-      //console.log(JSON.stringify(transformer(results, 0,1)));
-
+      console.log((0, _stringify.default)(transformer(results, 0, 1)));
       /*
       ex = [
       {"hospital":"","procedureName":"12X40X120 PROTEGE STENT","procedureCost":"1500.00"},
@@ -258,7 +259,7 @@ function readCsv(file) {
       {"hospital":"","procedureName":"12X8 AMPLATZER VASCULAR PLUG","procedureCost":"1484.00"}
       ]
       */
-      postToEndpoint(results);
+      //postToEndpoint(results);
     }
   });
 }
