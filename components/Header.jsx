@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
+
 const linkStyle = {
   marginRight: 15
 };

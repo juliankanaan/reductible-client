@@ -229,35 +229,35 @@ var Header = function Header() {
     className: "header",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 11
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 12
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     style: linkStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 13
     },
     __self: this
   }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/creare",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 15
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     style: linkStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 16
     },
     __self: this
   }, "Create post request")));
@@ -341,13 +341,43 @@ function readCsv(file) {
     complete: function complete(results) {
       //console.log(results);
       //console.log(cleanUp(results));
-      console.log(transformer(results, 0, 1));
+      //console.log(transformer(results, 0,1));
+      //console.log(JSON.stringify(transformer(results, 0,1)));
+
+      /*
+      ex = [
+      {"hospital":"","procedureName":"12X40X120 PROTEGE STENT","procedureCost":"1500.00"},
+      {"hospital":"","procedureName":"12X46 RELIANT STENT GRAFTCATH","procedureCost":"500.00"},
+      {"hospital":"","procedureName":"12X8 AMPLATZER VASCULAR PLUG","procedureCost":"1484.00"}
+      ]
+      */
+      postToEndpoint(results);
     }
   });
 }
 
+function postToEndpoint(data) {
+  var endpoint = 'https://pacific-lake-79223.herokuapp.com/api/push/bulk';
+  var options = {
+    method: 'POST',
+    body: data,
+    credentials: 'include',
+    headers: {
+      "Content-Type": "application/json"
+    } // leggo
+
+  };
+  fetch(endpoint, options).then(function (response) {
+    // check response
+    console.log(response.status);
+  }).then(function (json) {
+    console.log(json.json());
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
+
 function cleanUp(json, removeHeader) {
-  // remove first line if needed
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
@@ -386,8 +416,10 @@ function transformer(json, descPos, costPos) {
   var recordTemplate = {
     hospital: '',
     procedureName: '',
-    procedureCost: ''
+    procedureCost: '' // remove first line {usually a shit header }
+
   };
+  json['data'].shift();
   var _iteratorNormalCompletion2 = true;
   var _didIteratorError2 = false;
   var _iteratorError2 = undefined;
@@ -396,6 +428,7 @@ function transformer(json, descPos, costPos) {
     for (var _iterator2 = (0, _getIterator2.default)(json['data']), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
       var element = _step2.value;
       var record = (0, _objectSpread2.default)({}, recordTemplate);
+      record['hospital'] = 'Mount Sinai Hospital';
       record['procedureName'] = element[descPos].trim();
       record['procedureCost'] = element[costPos].replace("$", "").replace(",", "").trim();
       records.push(record);
