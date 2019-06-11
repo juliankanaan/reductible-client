@@ -1,11 +1,12 @@
 import Layout from "../components/Layout"
+import Records from "../components/Records"
 const helper = require('../helpers/helper.js');
 
 export default function Index() {
   return (
     <div>
       <Layout>
-      <p>This is the index page</p>
+      <Records />
       </Layout>
     </div>
   );
